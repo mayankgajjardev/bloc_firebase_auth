@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "405212606711",
+    "project_id": "bloc-fb-authentication",
+    "storage_bucket": "bloc-fb-authentication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405212606711:android:fe2a0756b3b4a7304a23f2",
+        "android_client_info": {
+          "package_name": "com.example.firebase_auth_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI8jcV1rVeWe4EVyZl2MWlb1UqORJcHIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
