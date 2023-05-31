@@ -1,26 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
+import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:firebase_auth_app/constants/db_constants.dart';
 import 'package:firebase_auth_app/models/custom_error.dart';
 
 class AuthRepository {
   final FirebaseFirestore firebaseFirestore;
-  final fbAuth.FirebaseAuth firebaseAuth;
+  final fb_auth.FirebaseAuth firebaseAuth;
 
   AuthRepository({
     required this.firebaseFirestore,
     required this.firebaseAuth,
   });
 
-  Stream<fbAuth.User?> get user => firebaseAuth.userChanges();
+  Stream<fb_auth.User?> get user => firebaseAuth.userChanges();
 
+  // Sign Up
   Future<void> signUp({
     required String name,
     required String email,
     required String password,
   }) async {
     try {
-      final fbAuth.UserCredential userCredential = await firebaseAuth
+      final fb_auth.UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
       final singnInuser = userCredential.user!;
@@ -31,7 +32,7 @@ class AuthRepository {
         'point': 0,
         'rank': 'bronze',
       });
-    } on fbAuth.FirebaseAuthException catch (e) {
+    } on fb_auth.FirebaseAuthException catch (e) {
       throw CustomError(
         code: e.code,
         message: e.message!,
@@ -46,6 +47,7 @@ class AuthRepository {
     }
   }
 
+  // Sign In
   Future<void> singin({
     required String email,
     required String password,
@@ -53,7 +55,7 @@ class AuthRepository {
     try {
       await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-    } on fbAuth.FirebaseAuthException catch (e) {
+    } on fb_auth.FirebaseAuthException catch (e) {
       throw CustomError(
         code: e.code,
         message: e.message!,
@@ -68,6 +70,7 @@ class AuthRepository {
     }
   }
 
+  // Sign Out
   Future<void> signOut() async {
     await firebaseAuth.signOut();
   }
